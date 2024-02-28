@@ -183,6 +183,7 @@ const layoutProps = {
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
+      codeBlock.className = "border border-black rounded-none";
 
       // wrap codebock with relative parent element
       codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
