@@ -4,7 +4,7 @@ export const SITE: Site = {
   website: "https://numnes.com/", // replace this with your deployed domain
   author: "Matheus Nunes Ismael",
   desc: "Falando um pouco sobre arquitetura de software e afins.",
-  title: "Matheus Nunes Ismael",
+  title: "Numnes",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerPage: 3,
