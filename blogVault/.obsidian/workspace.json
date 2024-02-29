@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/blog/adding-new-post.md",
+                "file": "content/blog/terminal-development.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/blog/adding-new-post.md",
+                "file": "content/blog/terminal-development.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/blog/adding-new-post.md",
+                "file": "content/blog/terminal-development.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/blog/adding-new-post.md"
+                "file": "content/blog/terminal-development.md"
               }
             }
           }
@@ -147,5 +147,22 @@
     }
   },
   "active": "1ed268f7dfe415ee",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "content/blog/tailwind-typography.md",
+    "content/blog/setting-dates-via-git-hooks.md",
+    "content/blog/predefined-color-schemes.md",
+    "content/blog/portfolio-website-development.md",
+    "content/blog/how-to-update-dependencies.md",
+    "content/blog/how-to-connect-astro-paper-blog-with-forestry-cms.md",
+    "content/blog/how-to-configure-astropaper-theme.md",
+    "content/blog/how-to-add-an-estimated-reading-time.md",
+    "content/blog/how-to-add-a-new-social-icon.md",
+    "content/blog/example-draft-post.md",
+    "content/blog/dynamic-og-images.md",
+    "content/blog/customizing-astropaper-theme-color-schemes.md",
+    "content/blog/astro-paper-4.md",
+    "content/blog/astro-paper-3.md",
+    "content/blog/astro-paper-2.md",
+    "content/blog/adding-new-post.md"
+  ]
 }

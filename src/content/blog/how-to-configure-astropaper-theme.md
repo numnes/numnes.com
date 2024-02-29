@@ -4,8 +4,8 @@ pubDatetime: 2022-09-23T04:58:53Z
 modDatetime: 2024-01-15T13:05:56.066Z
 title: How to configure AstroPaper theme
 slug: how-to-configure-astropaper-theme
-featured: true
-draft: false
+featured: false
+draft: true
 tags:
   - configuration
   - docs
