@@ -98,6 +98,7 @@ const socialImageURL = new URL(
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
       // include google-site-verification tag in the heading
       // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
+
       googleSiteVerification && (
         <meta
           name="google-site-verification"
@@ -113,5 +114,12 @@ const socialImageURL = new URL(
   <body>
     <SpeedInsights />
     <slot />
+    <script>
+      var Zaia = {
+        AgentURL: "https://platform.zaia.app/embed/chat/18856",
+      };
+    </script>
+    <!-- Widget Loader Script -->
+    <script src="https://cdn.zapgpt.com.br/widget-loader.js"></script>
   </body>
 </html>
