@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/blog/Deployer.md",
+                "file": "content/blog/templates/teplate.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Deployer"
+              "title": "teplate"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/blog/Deployer.md",
+                "file": "content/blog/templates/teplate.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para Deployer"
+              "title": "Links inversos para teplate"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/blog/Deployer.md",
+                "file": "content/blog/templates/teplate.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para Deployer"
+              "title": "Links de saída para teplate"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/blog/Deployer.md",
+                "file": "content/blog/templates/teplate.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de Deployer"
+              "title": "Sumário de teplate"
             }
           }
         ]
@@ -172,10 +172,10 @@
   },
   "active": "1ed268f7dfe415ee",
   "lastOpenFiles": [
-    "content/blog/example-draft-post.md",
-    "content/blog/Deployer.md",
     "content/blog/Sem título.md",
-    "content/blog/templates/example-draft-post.md",
+    "content/blog/templates/teplate.md",
+    "content/blog/Deployer.md",
+    "content/blog/example-draft-post.md",
     "content/blog/templates",
     "content/blog/adding-new-post.md",
     "content/blog/terminal-development.md",
