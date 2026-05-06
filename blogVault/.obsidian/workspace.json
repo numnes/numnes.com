@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/blog/templates/teplate.md",
+                "file": "content/blog/Deployer.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "teplate"
+              "title": "Deployer"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/blog/templates/teplate.md",
+                "file": "content/blog/Deployer.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Links inversos para teplate"
+              "title": "Links inversos para Deployer"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/blog/templates/teplate.md",
+                "file": "content/blog/Deployer.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Links de saída para teplate"
+              "title": "Links de saída para Deployer"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/blog/templates/teplate.md",
+                "file": "content/blog/Deployer.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Sumário de teplate"
+              "title": "Sumário de Deployer"
             }
           }
         ]
@@ -172,26 +172,27 @@
   },
   "active": "1ed268f7dfe415ee",
   "lastOpenFiles": [
-    "content/blog/Sem título.md",
-    "content/blog/templates/teplate.md",
-    "content/blog/Deployer.md",
+    "content/blog/how-to-connect-astro-paper-blog-with-forestry-cms.md",
+    "content/blog/how-to-configure-astropaper-theme.md",
+    "content/blog/how-to-add-an-estimated-reading-time.md",
     "content/blog/example-draft-post.md",
-    "content/blog/templates",
+    "content/blog/customizing-astropaper-theme-color-schemes.md",
+    "content/blog/Deployer.md",
+    "assets/images/Pasted image 20260506002735.png",
+    "content/blog/astro-paper-3.md",
+    "content/blog/astro-paper-2.md",
     "content/blog/adding-new-post.md",
+    "content/blog/templates/teplate.md",
+    "content/blog/Sem título.md",
+    "content/blog/templates",
     "content/blog/terminal-development.md",
     "content/blog/predefined-color-schemes.md",
     "content/blog/how-to-update-dependencies.md",
-    "content/blog/how-to-configure-astropaper-theme.md",
-    "content/blog/how-to-add-an-estimated-reading-time.md",
     "content/blog/tailwind-typography.md",
     "content/blog/setting-dates-via-git-hooks.md",
     "content/blog/portfolio-website-development.md",
-    "content/blog/how-to-connect-astro-paper-blog-with-forestry-cms.md",
     "content/blog/how-to-add-a-new-social-icon.md",
     "content/blog/dynamic-og-images.md",
-    "content/blog/customizing-astropaper-theme-color-schemes.md",
-    "content/blog/astro-paper-4.md",
-    "content/blog/astro-paper-3.md",
-    "content/blog/astro-paper-2.md"
+    "content/blog/astro-paper-4.md"
   ]
 }
