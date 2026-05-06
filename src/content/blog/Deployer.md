@@ -11,10 +11,8 @@ tags:
   - devops
   - deployer
 description: Uma pequena solução para a gestão de instancias de teste auto hosteadas
-ogImage: "[[Pasted image 20260506002735.png]]"
 ---
 
 ## Deployer
 
 To escrevendo ainda....
-![[Pasted image 20260506002735.png]]

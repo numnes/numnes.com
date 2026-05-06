@@ -41,73 +41,73 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p></p>
-      {
-        // only display if at least one social link is enabled
-        socialCount > 0 && (
-          <div class="social-wrapper">
-            <Socials />
-          </div>
-        )
-      }
+      <p>Aqui escrevo sobre projetinhos despretenciosos que eu faço.</p> Bem vindo.
     </section>
-
-    <Hr />
-
     {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Mais Relevantes</h2>
-            <ul>
-              {featuredPosts.map(({ data, slug }) => (
+      // only display if at least one social link is enabled
+      socialCount > 0 && (
+        <div class="social-wrapper">
+          <Socials />
+        </div>
+      )
+    }
+  </main>
+
+  <Hr />
+
+  {
+    featuredPosts.length > 0 && (
+      <>
+        <section id="featured">
+          <h2>Mais Relevantes</h2>
+          <ul>
+            {featuredPosts.map(({ data, slug }) => (
+              <Card
+                href={`/posts/${slug}/`}
+                frontmatter={data}
+                secHeading={false}
+              />
+            ))}
+          </ul>
+        </section>
+        {recentPosts.length > 0 && <Hr />}
+      </>
+    )
+  }
+
+  {
+    recentPosts.length > 0 && (
+      <section id="recent-posts">
+        <h2>Últimas postagens</h2>
+        <ul>
+          {recentPosts.map(
+            ({ data, slug }, index) =>
+              index < 4 && (
                 <Card
                   href={`/posts/${slug}/`}
                   frontmatter={data}
                   secHeading={false}
                 />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
+              )
+          )}
+        </ul>
+      </section>
+    )
+  }
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts">
-          <h2>Últimas postagens</h2>
-          <ul>
-            {recentPosts.map(
-              ({ data, slug }, index) =>
-                index < 4 && (
-                  <Card
-                    href={`/posts/${slug}/`}
-                    frontmatter={data}
-                    secHeading={false}
-                  />
-                )
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="all-posts-btn-wrapper">
-      <LinkButton href="/posts/">
-        Todos os posts
-        <svg xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-          ></path>
-        </svg>
-      </LinkButton>
-    </div>
-  </main>
-
-  <Footer />
+  <div class="all-posts-btn-wrapper">
+    <LinkButton href="/posts/">
+      Todos os posts
+      <svg xmlns="http://www.w3.org/2000/svg"
+        ><path
+          d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+        ></path>
+      </svg>
+    </LinkButton>
+  </div>
 </Layout>
+
+<Footer />
 
 <style>
   /* ===== Hero Section ===== */
