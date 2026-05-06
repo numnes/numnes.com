@@ -44,15 +44,15 @@ const socialCount = SOCIALS.filter(social => social.active).length;
       <p>
         Aqui escrevo sobre projetinhos despretenciosos que eu faço. Bem vindo.
       </p>
+      {
+        // only display if at least one social link is enabled
+        socialCount > 0 && (
+          <div class="social-wrapper">
+            <Socials />
+          </div>
+        )
+      }
     </section>
-    {
-      // only display if at least one social link is enabled
-      socialCount > 0 && (
-        <div class="social-wrapper">
-          <Socials />
-        </div>
-      )
-    }
   </main>
 
   <Hr />
