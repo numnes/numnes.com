@@ -1,0 +1,90 @@
+---
+/** Giscus — configuração fixa. Tema visual: `transparent_dark`. */
+const giscusRepo = "numnes/numnes.com";
+const giscusRepoId = "R_kgDOLZJ9_g";
+const giscusCategory = "Giscus";
+const giscusCategoryId = "DIC_kwDOLZJ9_s4C8a_0";
+
+const giscusMapping = "pathname";
+const giscusStrict = "0";
+const giscusReactionsEnabled = "1";
+const giscusEmitMetadata = "0";
+const giscusInputPosition = "bottom";
+const giscusTheme = "transparent_dark";
+const giscusLang = "pt";
+const giscusLoading = "lazy";
+---
+
+<section
+  aria-label="Comentários"
+  class="giscus-wrapper mx-auto mt-12 max-w-3xl border-b border-skin-line px-4 pb-10 mb-10"
+>
+  <div class="giscus border-skin-line border-t pt-10"></div>
+  <script
+    is:inline
+    define:vars={{
+      giscusRepo,
+      giscusRepoId,
+      giscusCategory,
+      giscusCategoryId,
+      giscusMapping,
+      giscusStrict,
+      giscusReactionsEnabled,
+      giscusEmitMetadata,
+      giscusInputPosition,
+      giscusTheme,
+      giscusLang,
+      giscusLoading,
+    }}
+  >
+    (() => {
+      function setIframeTheme(theme) {
+        const iframe = document.querySelector("iframe.giscus-frame");
+        iframe?.contentWindow?.postMessage(
+          { giscus: { setConfig: { theme } } },
+          "https://giscus.app"
+        );
+      }
+
+      function mountGiscus() {
+        const containers = Array.from(document.querySelectorAll(".giscus"));
+
+        for (const container of containers) {
+          container.innerHTML = "";
+
+          const script = document.createElement("script");
+          script.src = "https://giscus.app/client.js";
+          script.async = true;
+          script.crossOrigin = "anonymous";
+
+          script.setAttribute("data-repo", giscusRepo);
+          script.setAttribute("data-repo-id", giscusRepoId);
+          script.setAttribute("data-category", giscusCategory);
+          script.setAttribute("data-category-id", giscusCategoryId);
+          script.setAttribute("data-mapping", giscusMapping);
+          script.setAttribute("data-strict", giscusStrict);
+          script.setAttribute("data-reactions-enabled", giscusReactionsEnabled);
+          script.setAttribute("data-emit-metadata", giscusEmitMetadata);
+          script.setAttribute("data-input-position", giscusInputPosition);
+          script.setAttribute("data-theme", giscusTheme);
+          script.setAttribute("data-lang", giscusLang);
+          script.setAttribute("data-loading", giscusLoading);
+
+          container.appendChild(script);
+        }
+      }
+
+      function ensureTheme() {
+        setIframeTheme(giscusTheme);
+      }
+
+      mountGiscus();
+      queueMicrotask(() => ensureTheme());
+
+      document.addEventListener("astro:after-swap", () => {
+        mountGiscus();
+        queueMicrotask(() => ensureTheme());
+      });
+    })();
+  </script>
+</section>
