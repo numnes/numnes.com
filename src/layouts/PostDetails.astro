@@ -213,6 +213,231 @@ const layoutProps = {
   }
   attachCopyButtons();
 
+  /** Lightbox: open post images fullscreen with zoom/pan */
+  function attachImageLightbox() {
+    const article = document.getElementById("article");
+    if (!article) return;
+
+    // avoid re-binding on view transitions
+    const imgs = Array.from(article.querySelectorAll("img")).filter(img => {
+      if (img.closest("a")) return false; // keep normal link behavior
+      return !img.dataset.lightboxBound;
+    });
+
+    if (imgs.length === 0) return;
+
+    const DIALOG_ID = "image-lightbox-dialog";
+    const STYLE_ID = "image-lightbox-style";
+
+    function ensureStyles() {
+      if (document.getElementById(STYLE_ID)) return;
+      const style = document.createElement("style");
+      style.id = STYLE_ID;
+      style.textContent = `
+        dialog#${DIALOG_ID} {
+          padding: 0;
+          border: none;
+          max-width: none;
+          max-height: none;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.75);
+        }
+        dialog#${DIALOG_ID}::backdrop {
+          background: rgba(0, 0, 0, 0.75);
+        }
+        #${DIALOG_ID} .lb {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          touch-action: none;
+          cursor: zoom-out;
+        }
+        #${DIALOG_ID} .lb img {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) scale(1);
+          transform-origin: center center;
+          max-width: 95vw;
+          max-height: 95vh;
+          user-select: none;
+          -webkit-user-drag: none;
+          cursor: grab;
+        }
+        #${DIALOG_ID} .lb img.is-dragging { cursor: grabbing; }
+        #${DIALOG_ID} .lb-close {
+          position: absolute;
+          right: 16px;
+          top: 14px;
+          z-index: 2;
+          color: white;
+          background: rgba(0,0,0,.5);
+          border: 1px solid rgba(255,255,255,.25);
+          border-radius: 999px;
+          width: 38px;
+          height: 38px;
+          display: grid;
+          place-items: center;
+          font-size: 20px;
+          line-height: 1;
+        }
+        #${DIALOG_ID} .lb-hint {
+          position: absolute;
+          left: 16px;
+          bottom: 14px;
+          z-index: 2;
+          color: rgba(255,255,255,.85);
+          background: rgba(0,0,0,.35);
+          border: 1px solid rgba(255,255,255,.15);
+          border-radius: 10px;
+          padding: 8px 10px;
+          font-size: 12px;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    function ensureDialog() {
+      let dialog = document.getElementById(DIALOG_ID);
+      if (dialog) return dialog;
+
+      dialog = document.createElement("dialog");
+      dialog.id = DIALOG_ID;
+      dialog.innerHTML = `
+        <button class="lb-close" aria-label="Fechar">×</button>
+        <div class="lb" aria-label="Visualizador de imagem" role="document">
+          <img alt="" />
+        </div>
+        <div class="lb-hint">Scroll para zoom • Arraste para mover • ESC para fechar</div>
+      `;
+
+      document.body.appendChild(dialog);
+      return dialog;
+    }
+
+    ensureStyles();
+    const dialog = ensureDialog();
+    const closeBtn = dialog.querySelector(".lb-close");
+    const lb = dialog.querySelector(".lb");
+    const viewerImg = dialog.querySelector(".lb img");
+    if (!closeBtn || !lb || !viewerImg) return;
+
+    let scale = 1;
+    let tx = 0;
+    let ty = 0;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartTx = 0;
+    let dragStartTy = 0;
+
+    function applyTransform() {
+      viewerImg.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(${scale})`;
+    }
+
+    function resetTransform() {
+      scale = 1;
+      tx = 0;
+      ty = 0;
+      applyTransform();
+    }
+
+    function open(src, alt) {
+      viewerImg.src = src;
+      viewerImg.alt = alt ?? "";
+      resetTransform();
+      if (!dialog.open) dialog.showModal();
+      document.documentElement.style.overflow = "hidden";
+    }
+
+    function close() {
+      if (dialog.open) dialog.close();
+      viewerImg.src = "";
+      document.documentElement.style.overflow = "";
+      resetTransform();
+    }
+
+    // One-time listeners
+    if (!dialog.dataset.bound) {
+      dialog.dataset.bound = "true";
+      closeBtn.addEventListener("click", close);
+      dialog.addEventListener("click", e => {
+        // click outside image closes
+        if (e.target === dialog || e.target === lb) close();
+      });
+      dialog.addEventListener("close", () => {
+        document.documentElement.style.overflow = "";
+        resetTransform();
+      });
+
+      // zoom with wheel / trackpad
+      lb.addEventListener(
+        "wheel",
+        e => {
+          e.preventDefault();
+          const delta = -e.deltaY;
+          const next = scale * (delta > 0 ? 1.08 : 0.92);
+          scale = Math.min(6, Math.max(1, next));
+          applyTransform();
+        },
+        { passive: false }
+      );
+
+      // drag to pan
+      viewerImg.addEventListener("pointerdown", e => {
+        if (scale <= 1) return;
+        isDragging = true;
+        viewerImg.classList.add("is-dragging");
+        viewerImg.setPointerCapture(e.pointerId);
+        dragStartX = e.clientX;
+        dragStartY = e.clientY;
+        dragStartTx = tx;
+        dragStartTy = ty;
+      });
+      viewerImg.addEventListener("pointermove", e => {
+        if (!isDragging) return;
+        tx = dragStartTx + (e.clientX - dragStartX);
+        ty = dragStartTy + (e.clientY - dragStartY);
+        applyTransform();
+      });
+      viewerImg.addEventListener("pointerup", () => {
+        isDragging = false;
+        viewerImg.classList.remove("is-dragging");
+      });
+      viewerImg.addEventListener("pointercancel", () => {
+        isDragging = false;
+        viewerImg.classList.remove("is-dragging");
+      });
+
+      // double click toggles zoom
+      viewerImg.addEventListener("dblclick", () => {
+        if (scale > 1) {
+          resetTransform();
+        } else {
+          scale = 2;
+          applyTransform();
+        }
+      });
+
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") close();
+      });
+    }
+
+    for (const img of imgs) {
+      img.dataset.lightboxBound = "true";
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => {
+        const src = img.currentSrc || img.src;
+        if (!src) return;
+        open(src, img.alt);
+      });
+    }
+  }
+  attachImageLightbox();
+
   /** Scrolls the document to the top when
    * the "Back to Top" button is clicked. */
   function backToTop() {
@@ -222,4 +447,9 @@ const layoutProps = {
     });
   }
   backToTop();
+
+  // Run again on view transitions navigation (Astro)
+  document.addEventListener("astro:after-swap", () => {
+    attachImageLightbox();
+  });
 </script>

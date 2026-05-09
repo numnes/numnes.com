@@ -16,9 +16,6 @@ pnpm-debug.log*
 .env
 .env.production
 
-# macOS-specific files
-.DS_Store
-
 # ignore .astro directory
 .astro
 
@@ -27,10 +24,13 @@ pnpm-debug.log*
 
 # yarn
 .yarn/*
-!.yarn/patches
+!.yarn/patche
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
 .vercel
+
+# Obsidian
+blogVault/.obsidian/
